@@ -134,18 +134,6 @@ files = [
 gssauth = ["gssapi ; platform_system != \"Windows\"", "sspilib ; platform_system == \"Windows\""]
 
 [[package]]
-name = "better-profanity"
-version = "0.7.0"
-description = "Blazingly fast cleaning swear words (and their leetspeak) in strings"
-optional = false
-python-versions = "==3.*"
-groups = ["main"]
-files = [
-    {file = "better_profanity-0.7.0-py3-none-any.whl", hash = "sha256:bd4c529ea6aa2db1aaa50524be1ed14d0fe5c664f1fd88c8bc388c7e9f9f00e8"},
-    {file = "better_profanity-0.7.0.tar.gz", hash = "sha256:8a6fdc8606d7471e7b5f6801917eca98ec211098262e82f62da4f5de3a73145b"},
-]
-
-[[package]]
 name = "click"
 version = "8.5.0"
 description = "Composable command line interface toolkit"
@@ -727,26 +715,6 @@ files = [
 cli = ["click (>=5.0)"]
 
 [[package]]
-name = "redis"
-version = "8.1.0"
-description = "Python client for Redis database and key-value store"
-optional = false
-python-versions = ">=3.10"
-groups = ["main"]
-files = [
-    {file = "redis-8.1.0-py3-none-any.whl", hash = "sha256:a4fe1aac3d3b3cc791d4b3d5931c5a956045dc951ee74d1c913ee3ac4d2ee9fb"},
-    {file = "redis-8.1.0.tar.gz", hash = "sha256:6e1a19beef9225c83efd689c7e6b7da2d5215b1f42cd13b7fc3714d0a09c7b25"},
-]
-
-[package.extras]
-circuit-breaker = ["pybreaker (>=1.4.0)"]
-hiredis = ["hiredis (>=3.2.0)"]
-jwt = ["pyjwt (>=2.13.0)"]
-ocsp = ["cryptography (>=36.0.1)", "pyopenssl (>=20.0.1)", "requests (>=2.31.0)"]
-otel = ["opentelemetry-api (>=1.39.1)", "opentelemetry-exporter-otlp-proto-http (>=1.39.1)", "opentelemetry-sdk (>=1.39.1)"]
-xxhash = ["xxhash (>=3.6.0,<3.7.0)"]
-
-[[package]]
 name = "ruff"
 version = "0.17.2"
 description = "An extremely fast Python linter and code formatter, written in Rust."
@@ -971,4 +939,4 @@ dev = ["black (>=19.3b0) ; python_version >= \"3.6\"", "pytest (>=4.6.2)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4.0"
-content-hash = "fd4a07612833c9a2a0cb066ec7f47e4122e63accebc29fa6dd1a2fa9d7396c56"
+content-hash = "664f9acd323be6001bf06ae8ac7a88c5ae7813803d31d07a30641b8136c81c19"
