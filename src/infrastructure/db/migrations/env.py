@@ -7,7 +7,7 @@ from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from src.config import settings
-from src.infrastructure.db.base_model import Base
+from src.models.base import Base
 from src.utils import import_models
 
 import_models()

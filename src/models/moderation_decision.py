@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Mapped
 
-from src.infrastructure.db.base_model import AuditMixin, Base
+from src.models.base import AuditMixin, Base
 
 
 class ModerationDecision(AuditMixin, Base):
