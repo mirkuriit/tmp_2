@@ -4,6 +4,8 @@ from uuid import UUID
 from fastapi import APIRouter, Depends
 from starlette import status
 
+from src.dependencies.moderation_decision_dependency import \
+   moderation_decision_service_dependency
 from src.infrastructure.db.dependencies import get_read_session, get_session
 from src.schemas.moderation_decision_schema import (
    ModerationDecisionCreate,
@@ -11,7 +13,6 @@ from src.schemas.moderation_decision_schema import (
 )
 from src.services.moderation_decision_service import (
    ModerationDecisionService,
-   moderation_decision_service_dependency,
 )
 
 router = APIRouter(prefix="/moderation_decision/v1", tags=["Moderation V1"])

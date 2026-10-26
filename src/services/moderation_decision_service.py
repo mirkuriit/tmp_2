@@ -41,16 +41,3 @@ class ModerationDecisionService:
             self._mapper.schema_to_model(moderation_decision)
         )
         return self._mapper.model_to_schema(created_moderation_decision)
-
-
-def moderation_decision_service_dependency(
-        session_dependency: Callable[..., Any]
-) -> Callable[[AsyncSession], ModerationDecisionService]:
-    def dependency(
-            session: Annotated[AsyncSession, Depends(session_dependency)],
-    ):
-        return ModerationDecisionService(
-            ModerationDecisionMapper(),
-            ModerationDecisionRepository(session)
-        )
-    return dependency
