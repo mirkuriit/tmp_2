@@ -23,6 +23,13 @@ class ModerationDecisionRepository:
 
         return await self._session.scalar(select(ModerationDecision).where(*filters))
 
+    async def get_by_idempotency_key(
+            self,
+            idempotency_key: UUID
+    )-> ModerationDecision | None:
+        return await self._session.scalar(
+            select(ModerationDecision).where(ModerationDecision.idempotency_key == idempotency_key)
+        )
 
     async def create(self, moderation_decision: ModerationDecision) -> ModerationDecision:
         self._session.add(moderation_decision)

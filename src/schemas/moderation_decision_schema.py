@@ -14,3 +14,4 @@ class ModerationDecisionCreate(ModerationDecisionBase):
 
 class ModerationDecisionResponse(ModerationDecisionBase):
     id: UUID
+    idempotency_key: UUID

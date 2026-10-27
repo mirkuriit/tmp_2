@@ -1,11 +1,11 @@
-from typing import Callable, Any, Annotated
+from collections.abc import Callable
+from typing import Annotated, Any
 
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.mappers.moderation_decision_mapper import ModerationDecisionMapper
-from src.repositories.moderation_decision_repository import \
-    ModerationDecisionRepository
+from src.repositories.moderation_decision_repository import ModerationDecisionRepository
 from src.services.moderation_decision_service import ModerationDecisionService
 
 

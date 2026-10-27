@@ -1,10 +1,6 @@
-from collections.abc import Callable
-from typing import Annotated, Any
 from uuid import UUID
 
-from fastapi import Depends
 from fastapi.exceptions import HTTPException
-from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.status import HTTP_404_NOT_FOUND
 
 from src.mappers.moderation_decision_mapper import ModerationDecisionMapper
@@ -36,8 +32,11 @@ class ModerationDecisionService:
             )
         return self._mapper.model_to_schema(moderation_decision)
 
-    async def create(self, moderation_decision: ModerationDecisionCreate) -> ModerationDecisionResponse:
+    async def create(self, moderation_decision: ModerationDecisionCreate, idempotency_key: UUID) -> ModerationDecisionResponse:
+        wanted_moderation_decision = await self._repository.get_by_idempotency_key(idempotency_key)
+        if wanted_moderation_decision:
+            return self._mapper.model_to_schema(wanted_moderation_decision)
         created_moderation_decision = await self._repository.create(
-            self._mapper.schema_to_model(moderation_decision)
+            self._mapper.schema_to_model(moderation_decision, idempotency_key)
         )
         return self._mapper.model_to_schema(created_moderation_decision)

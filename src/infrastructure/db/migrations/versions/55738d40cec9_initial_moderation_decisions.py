@@ -1,8 +1,8 @@
 """initial_moderation_decisions
 
-Revision ID: e0f9623959d6
+Revision ID: 55738d40cec9
 Revises: 
-Create Date: 2026-10-23 00:29:43.422277
+Create Date: 2026-10-27 20:47:27.013289
 
 """
 from collections.abc import Sequence
@@ -11,7 +11,7 @@ import sqlalchemy as sa
 from alembic import op
 
 # revision identifiers, used by Alembic.
-revision: str = 'e0f9623959d6'
+revision: str = '55738d40cec9'
 down_revision: str | Sequence[str] | None = None
 branch_labels: str | Sequence[str] | None = None
 depends_on: str | Sequence[str] | None = None
@@ -23,6 +23,7 @@ def upgrade() -> None:
     op.create_table('moderation_decisions',
     sa.Column('comment', sa.String(), nullable=False),
     sa.Column('is_allowed', sa.Boolean(), nullable=False),
+    sa.Column('idempotency_key', sa.Uuid(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.TIMESTAMP(timezone=True), nullable=False),
     sa.Column('is_deleted', sa.Boolean(), nullable=False),
