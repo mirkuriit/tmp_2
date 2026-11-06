@@ -3,7 +3,7 @@ from uuid import UUID
 from fastapi.exceptions import HTTPException
 from starlette.status import HTTP_404_NOT_FOUND
 
-from models.moderation_decision import ModerationDecision
+from src.models.moderation_decision import ModerationDecision
 from src.mappers.moderation_decision_mapper import ModerationDecisionMapper
 from src.repositories.moderation_decision_repository import ModerationDecisionRepository
 from src.schemas.moderation_decision_schema import (

@@ -4,7 +4,7 @@ from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.models.moderation_decision import ModerationDecision
-from utils import string_hash
+from src.utils import string_hash
 
 
 class ModerationDecisionRepository:
