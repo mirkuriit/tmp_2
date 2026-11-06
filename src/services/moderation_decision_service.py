@@ -3,6 +3,7 @@ from uuid import UUID
 from fastapi.exceptions import HTTPException
 from starlette.status import HTTP_404_NOT_FOUND
 
+from models.moderation_decision import ModerationDecision
 from src.mappers.moderation_decision_mapper import ModerationDecisionMapper
 from src.repositories.moderation_decision_repository import ModerationDecisionRepository
 from src.schemas.moderation_decision_schema import (
@@ -33,6 +34,7 @@ class ModerationDecisionService:
         return self._mapper.model_to_schema(moderation_decision)
 
     async def create(self, moderation_decision: ModerationDecisionCreate, idempotency_key: UUID) -> ModerationDecisionResponse:
+        await self._repository.get_advisory_lock(f"{ModerationDecision.__tablename__}:{idempotency_key}")
         wanted_moderation_decision = await self._repository.get_by_idempotency_key(idempotency_key)
         if wanted_moderation_decision:
             return self._mapper.model_to_schema(wanted_moderation_decision)

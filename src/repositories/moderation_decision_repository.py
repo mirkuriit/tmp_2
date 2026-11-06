@@ -1,14 +1,20 @@
 from uuid import UUID
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.models.moderation_decision import ModerationDecision
+from utils import string_hash
 
 
 class ModerationDecisionRepository:
     def __init__(self, db_session: AsyncSession):
         self._session = db_session
+
+    async def get_advisory_lock(self, lock_key: str) -> None:
+        await self._session.scalar(
+            func.pg_advisory_xact_lock(string_hash(lock_key))
+        )
 
     async def get_one_or_none(
             self,
