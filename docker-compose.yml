@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:14
+    env_file:
+      - .docker.env
+    ports:
+      - "5433:5432"
+    volumes:
+      - new_service_postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "8001:8000"
+    env_file:
+      - .docker.env
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+volumes:
+  new_service_postgres_data:
+
